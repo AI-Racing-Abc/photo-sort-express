@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photo Sort Express · 照片分拣快递</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="brand">
+        <h1>📦 Photo Sort Express · 照片分拣快递</h1>
+        <p>Sort into Mac drawers A S D F (copy only · never deletes phone/originals) · 四抽屉 ASDF，只复制不删原图</p>
+      </div>
+      <div class="toolbar">
+        <button class="btn primary" id="btnLoadDemo">Load Demo · 演示图</button>
+        <button class="btn" id="btnLoadFolder">Load Folder · 选文件夹</button>
+        <input type="file" id="fileInput" multiple accept="image/*,video/*" hidden />
+        <button class="btn ghost" id="btnPause" title="Pause / resume belt">⏸ Pause</button>
+        <button class="btn ghost" id="btnUndo" disabled>↩ Undo · 撤销</button>
+        <span class="progress-chip" id="progressChip">0 / 0 sorted</span>
+      </div>
+    </header>
+
+    <main class="stage" id="stage">
+      <div class="belt-rail top"></div>
+      <div class="belt-track" id="beltTrack"></div>
+      <div class="belt-rail bottom"></div>
+      <div class="empty-hint" id="emptyHint">
+        <div>
+          <strong>Load Mac folder to start · 先加载 Mac 上的文件夹</strong><br />
+          iPhone → AirDrop/Finder/Image Capture → Mac folder → Load here (原图留在手机)<br />
+          Keys <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> <kbd>F</kbd> · Drag · Copy-only to drawers
+        </div>
+      </div>
+    </main>
+
+    <section class="drawers" id="drawers">
+      <div class="drawer" data-id="A" tabindex="0">
+        <span class="count" data-count>0</span>
+        <span class="letter">A</span>
+        <span class="label">Key A · 抽屉 A</span>
+      </div>
+      <div class="drawer" data-id="S" tabindex="0">
+        <span class="count" data-count>0</span>
+        <span class="letter">S</span>
+        <span class="label">Key S · 抽屉 S</span>
+      </div>
+      <div class="drawer" data-id="D" tabindex="0">
+        <span class="count" data-count>0</span>
+        <span class="letter">D</span>
+        <span class="label">Key D · 抽屉 D</span>
+      </div>
+      <div class="drawer" data-id="F" tabindex="0">
+        <span class="count" data-count>0</span>
+        <span class="letter">F</span>
+        <span class="label">Key F · 抽屉 F</span>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="music-bar">
+        <label>🎵 Music · 音乐</label>
+        <button class="btn" id="btnMusic">Pick Audio · 选音频</button>
+        <input type="file" id="musicInput" accept="audio/*" hidden />
+        <button class="btn ghost" id="btnMusicToggle" disabled>▶ Play</button>
+        <input type="range" id="vol" min="0" max="1" step="0.01" value="0.4" title="Volume" />
+        <span class="hint" id="musicName">No track</span>
+      </div>
+      <div class="export-bar">
+        <button class="btn" id="btnExportJson" disabled>Export JSON</button>
+        <button class="btn" id="btnExportCsv" disabled>Export CSV</button>
+        <button class="btn primary" id="btnExportFolders" disabled>Copy to A/S/D/F on Mac</button>
+        <span class="hint">iPhone → Mac folder first · Game copies only · A S D F · Space · U</span>
+      </div>
+    </footer>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
